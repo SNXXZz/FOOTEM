@@ -1,4 +1,4 @@
-const API_KEY = 541ba6bf529504b8b3ab9bfbf8c53337";
+const API_KEY = "541ba6bf529504b8b3ab9bfbf8c53337I";
 
 async function loadMatches() {
   const today = new Date().toISOString().split("T")[0];
