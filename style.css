@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0f16;
+  color: white;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #1f2937;
+}
+
+h1 {
+  margin: 0;
+  color: #22c55e; /* Vert FOOTEM */
+}
+
+main {
+  padding: 20px;
+}
+
+.match {
+  background: #1f2937;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
