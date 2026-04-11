@@ -1,26 +1,40 @@
 async function loadMatches() {
 const container = document.getElementById("matches");
 
-// Pour l'instant : FAUX MATCHS (on mettra une vraie API après)
-const fakeMatches = [
-{ home: "Real Madrid", away: "Barça", score: "2 - 1", status: "Terminé" },
-{ home: "PSG", away: "OM", score: "1 - 0", status: "En direct" },
-{ home: "Chelsea", away: "Arsenal", score: "0 - 0", status: "20:45" }
-];
+const API_KEY = "541ba6bf529504b8b3ab9bfbf8c53337I";
 
-container.innerHTML = "";
+async function loadMatches() {
+  const today = new Date().toISOString().split("T")[0];
+  const url = `https://v3.football.api-sports.io/fixtures?date=${today}`;
 
-fakeMatches.forEach(match => {
-const div = document.createElement("div");
-div.className = "match";
-div.innerHTML = `
-<strong>${match.home}</strong> vs <strong>${match.away}</strong><br>
-Score : ${match.score}<br>
-Statut : ${match.status}
-`;
-container.appendChild(div);
-});
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      "x-apisports-key": API_KEY
+    }
+  });
+
+  const data = await res.json();
+  const matches = data.response;
+
+  const container = document.getElementById("matches");
+  container.innerHTML = "";
+
+  matches.forEach(m => {
+    const div = document.createElement("div");
+    div.className = "match";
+
+    div.innerHTML = `
+      <strong>${m.teams.home.name}</strong> vs <strong>${m.teams.away.name}</strong><br>
+      Score : ${m.goals.home} - ${m.goals.away}<br>
+      Statut : ${m.fixture.status.long}
+    `;
+
+    container.appendChild(div);
+  });
 }
+
+loadMatches();
 
 loadMatches();
 
